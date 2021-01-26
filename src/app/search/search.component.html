@@ -3,11 +3,21 @@
 <head></head>
 
 <body>
-    <form>
-        <!-- Search form -->
-        <div class="md-form active-purple active-purple-2 mb-3">
-          <input class="form-control" type="search" id="search2" aria-label="Search" mdbInput>
-          <button clas="button" type="submit" gradient="peach" rounded="true" mdbWavesEffect>Peach</button>
-        </div>
-    </form>
+  <div class="topnav">
+    <img alt="SeachGr Logo" src="../../assets/searchgr.png" class="logo">
+    <div class="right-section">
+      <span class="login-as">Logged in as {{username}}</span>
+      <a class="btn-logout" href="https://0999b390da37.ngrok.io/logout">| Logout</a>
+    </div>
+
+  </div>
+  <div class="wrap">
+    <div class="search">
+      <input type="text" class="searchTerm" placeholder="What are you looking for?" [ngModel]="searchKey"
+        (ngModelChange)="searchKey=$event">
+      <button type="submit" class="searchButton" (click)="sendSearchKey()">
+        <input type="image" class="loop-icon" src="../../assets/icon-search.svg" alt="Search">
+      </button>
+    </div>
+  </div>
 </body>

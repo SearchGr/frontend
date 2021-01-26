@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { TokenizeResult } from '@angular/compiler/src/ml_parser/lexer';
+import { CookieService } from 'ngx-cookie-service';
+import {properties} from '../app.properties';
+
 
 const httpOptions = {
   withCredentials: true,
-  headers: new HttpHeaders({ 
+  headers: new HttpHeaders({
     'Content-Type': 'application/json',
     'charset': 'UTF-8',
-
-    })
+  })
 };
 
 @Injectable({
@@ -16,17 +17,19 @@ const httpOptions = {
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
 
-  public requesteSet(){
-    let url = "http://localhost:8000/";
-    console.log("first request");
-    return this.http.get<any>(url, httpOptions).toPromise();
+  public isUserAuthorized() {
+    let url = properties.serverUrl + "/checkAuthorization";
+    let isAuthorized = true;
+    this.http.get<any>(url, httpOptions)
+      .toPromise()
+      .then(response => isAuthorized = response['authorized']);
+    return isAuthorized;
   }
 
-  public viewRequest(){
-    let url = "http://localhost:8000/print";
-    console.log("first request");
-    return this.http.get<any>(url, httpOptions).toPromise();
+  public logoutRequest() {
+    let url = properties.serverUrl + "/logout";
+    return this.http.put<any>(url, httpOptions).toPromise();
   }
 }

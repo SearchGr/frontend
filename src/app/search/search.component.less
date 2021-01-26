@@ -1,46 +1,154 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
 .active-pink-2 input[type=search]:focus:not([readonly]) {
-    border-bottom: 1px solid #f48fb1;
-    box-shadow: 0 1px 0 0 #f48fb1;
-    }
-    
-    .active-pink input[type=search] {
-    border-bottom: 1px solid #f48fb1;
-    box-shadow: 0 1px 0 0 #f48fb1;
-    }
-    
-    .active-purple-2 input[type=search]:focus:not([readonly]) {
-    border-bottom: 1px solid #ce93d8;
-    box-shadow: 0 1px 0 0 #ce93d8;
-    }
-    
-    .active-purple input[type=search] {
-    border-bottom: 1px solid #ce93d8;
-    box-shadow: 0 1px 0 0 #ce93d8;
-    }
-    
-    .active-cyan-2 input[type=search]:focus:not([readonly]) {
-    border-bottom: 1px solid #4dd0e1;
-    box-shadow: 0 1px 0 0 #4dd0e1;
-    }
-    
-    .active-cyan input[type=search] {
-    border-bottom: 1px solid #4dd0e1;
-    box-shadow: 0 1px 0 0 #4dd0e1;
-    }
-    .button{
-            background-color: black;
-            text-align      : center;
-            color           : white;
-            font-family     : Cambria;
-            display         : block;
-            cursor          : pointer;
-            position        : relative;
-            padding         : 10px 40px;
-            margin-bottom   : 20px;
-            margin-top      : 20px;
-            font-size       : 17px;
-            border-radius   : 10px;
-            max-width       : 170px;
-            overflow        : hidden;
-        
-    }
+        border-bottom: 1px solid #f48fb1;
+        box-shadow   : 0 1px 0 0 #f48fb1;
+}
+
+.active-pink input[type=search] {
+        border-bottom: 1px solid #f48fb1;
+        box-shadow   : 0 1px 0 0 #f48fb1;
+}
+
+.active-purple-2 input[type=search]:focus:not([readonly]) {
+        border-bottom: 1px solid #ce93d8;
+        box-shadow   : 0 1px 0 0 #ce93d8;
+}
+
+.active-purple input[type=search] {
+        border-bottom: 1px solid #ce93d8;
+        box-shadow   : 0 1px 0 0 #ce93d8;
+}
+
+.active-cyan-2 input[type=search]:focus:not([readonly]) {
+        border-bottom: 1px solid #4dd0e1;
+        box-shadow   : 0 1px 0 0 #4dd0e1;
+}
+
+.active-cyan input[type=search] {
+        border-bottom: 1px solid #4dd0e1;
+        box-shadow   : 0 1px 0 0 #4dd0e1;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+        background-color: #ad00d8;
+        border-radius   : 20px;
+        overflow        : hidden;
+        margin-bottom   : 100px;
+
+        .right-section {
+                float: right;
+
+                a,
+                span {
+                        float          : left;
+                        color          : white;
+                        text-align     : center;
+                        padding        : 14px 4px;
+                        text-decoration: none;
+                        font-size      : 13px;
+                }
+
+                .btn-logout {
+                        margin-right: 10px;
+                }
+
+                .login-as {
+                        margin-left: 0px;
+                }
+        }
+}
+
+/* Style the links inside the navigation bar */
+// .topnav a {
+//         float          : left;
+//         color          : white;
+//         text-align     : center;
+//         padding        : 14px 10px;
+//         text-decoration: none;
+//         font-size      : 13px;
+// }
+
+/* Change the color of links on hover */
+.topnav a:hover {
+        background-color: rgb(185, 111, 185);
+        color           : black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+        background-color: #ca5ce6;
+        color           : white;
+}
+
+/* The overlay effect with black background */
+.overlay {
+        height          : 100%;
+        width           : 100%;
+        display         : none;
+        position        : fixed;
+        z-index         : 1;
+        top             : 0;
+        left            : 0;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.9);
+        /* Black with a little bit see-through */
+}
+
+.logo {
+        width      : 50px;
+        margin-left: 15px;
+}
+
+body {
+        background : #f2f2f2;
+        font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+        width   : 100%;
+        position: relative;
+        display : flex;
+}
+
+.searchTerm {
+        width        : 100%;
+        border       : 3px solid #ca5ce6;
+        border-right : none;
+        padding      : 5px;
+        height       : 54px;
+        border-radius: 5px 0 0 5px;
+        outline      : none;
+        color        : #9DBFAF;
+}
+
+.searchTerm:focus {
+        color: #ca5ce6;
+}
+
+.searchButton {
+        width        : 55px;
+        height       : 70px;
+        border       : 1px solid #ca5ce6;
+        background   : #ca5ce6;
+        text-align   : center;
+        color        : #fff;
+        border-radius: 0 5px 5px 0;
+        cursor       : pointer;
+        font-size    : 20px;
+
+        .loop-icon {
+                width : 100%;
+                // background-color:#ca5ce6 ;
+        }
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap {
+        width    : 70%;
+        position : absolute;
+        top      : 50%;
+        left     : 50%;
+        transform: translate(-50%, -50%);
+}
