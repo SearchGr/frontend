@@ -28,8 +28,7 @@ export class AuthService {
     return isAuthorized;
   }
 
-  public logoutRequest() {
-    let url = properties.serverUrl + "/logout";
-    return this.http.put<any>(url, httpOptions).toPromise();
+  public getUsername(){
+    return this.http.get<any>(properties.serverUrl + '/profile/username', httpOptions).toPromise();
   }
 }

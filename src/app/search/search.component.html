@@ -10,7 +10,7 @@
       <a class="btn-logout" href="{{logoutUrl}}">| Logout</a>
     </div>
   </div>
-  <div class = "body-container">
+  <div class="body-container">
     <div class="wrap">
       <div class="search">
         <input type="text" class="searchTerm" placeholder="What are you looking for?" [ngModel]="searchKey"
@@ -20,10 +20,33 @@
         </button>
       </div>
     </div>
+    <!-- <carousel>
+      <div class="carousel-cell">
+        <img src="../../assets/dunare.JPG">
+      </div>
+      <div class="carousel-cell">
+        <img src="../../assets/ciucas.JPG">
+      </div>
+      <div class="carousel-cell">
+        <img src="../../assets/ciucas1.JPG">
+      </div>
+      <div class="carousel-cell">
+        <img src="../../assets/seaside.JPG">
+      </div>
+      <div class="carousel-cell">
+        <img src="../../assets/ciucas.JPG">
+      </div>
+      <div class="carousel-cell">
+        <img src="../../assets/dunare.JPG">
+      </div>
+      <div class="carousel-cell">
+        <img src="../../assets/seaside.JPG">
+      </div>
+    </carousel> -->
     <div id="images" class="image-list">
+      <div class="empty-result" *ngIf="printEmptyResult()">There aren't photos with the word you searched!</div>
       <ul>
         <li *ngFor="let media of mediaUrls">
-          <!-- <p id="photos-not-found">There aren't photos with the word you searched!</p> -->
           <div id="photos" class="container-image"><img class="image" src={{media}}></div>
         </li>
       </ul>

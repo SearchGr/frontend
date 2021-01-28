@@ -1,34 +1,32 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
-.active-pink-2 input[type=search]:focus:not([readonly]) {
-        border-bottom: 1px solid #f48fb1;
-        box-shadow   : 0 1px 0 0 #f48fb1;
+.active-pink-2 input[type=search] {
+        border-bottom: 1px solid #ca5ce6;
+        box-shadow   : 0 1px 0 0 #ca5ce6;
 }
 
 .active-pink input[type=search] {
-        border-bottom: 1px solid #f48fb1;
-        box-shadow   : 0 1px 0 0 #f48fb1;
+        border-bottom: 1px solid #ca5ce6;
+        box-shadow   : 0 1px 0 0 #ca5ce6;
 }
 
-.active-purple-2 input[type=search]:focus:not([readonly]) {
-        border-bottom: 1px solid #ce93d8;
-        box-shadow   : 0 1px 0 0 #ce93d8;
-}
+// .active-purple-2 input[type=search]:focus:not([readonly]) {
+//         border-bottom: 1px solid #ce93d8;
+//         box-shadow   : 0 1px 0 0 #ce93d8;
+// }
 
-.active-purple input[type=search] {
-        border-bottom: 1px solid #ce93d8;
-        box-shadow   : 0 1px 0 0 #ce93d8;
-}
+// .active-purple input[type=search] {
+//         border-bottom: 1px solid #ce93d8;
+//         box-shadow   : 0 1px 0 0 #ce93d8;
+// }
 
-.active-cyan-2 input[type=search]:focus:not([readonly]) {
-        border-bottom: 1px solid #4dd0e1;
-        box-shadow   : 0 1px 0 0 #4dd0e1;
-}
+// .active-cyan-2 input[type=search]:focus:not([readonly]) {
+//         border-bottom: 1px solid  #ad00d8;
+//         box-shadow   : 0 1px 0 0  #ad00d8;
+// }
 
-.active-cyan input[type=search] {
-        border-bottom: 1px solid #4dd0e1;
-        box-shadow   : 0 1px 0 0 #4dd0e1;
-}
+// .active-cyan input[type=search] {
+//         border-bottom: 1px solid  #ad00d8;
+//         box-shadow   : 0 1px 0 0  #ad00d8;
+// }
 
 /* Add a black background color to the top navigation */
 .topnav {
@@ -38,7 +36,8 @@
         margin-bottom   : 100px;
 
         .right-section {
-                float: right;
+                float     : right;
+                text-align: center;
 
                 a,
                 span {
@@ -60,26 +59,19 @@
         }
 }
 
-/* Style the links inside the navigation bar */
-// .topnav a {
-//         float          : left;
-//         color          : white;
-//         text-align     : center;
-//         padding        : 14px 10px;
-//         text-decoration: none;
-//         font-size      : 13px;
-// }
 
 /* Change the color of links on hover */
 .topnav a:hover {
         background-color: rgb(185, 111, 185);
-        color           : black;
+        color           : #ad00d8;
+        border-radius   : 20px;
 }
 
 /* Add a color to the active/current link */
 .topnav a.active {
         background-color: #ca5ce6;
         color           : white;
+        border-radius   : 20px;
 }
 
 /* The overlay effect with black background */
@@ -91,8 +83,7 @@
         z-index         : 1;
         top             : 0;
         left            : 0;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.9);
+        background-color: rgb(255, 255, 255);
         /* Black with a little bit see-through */
 }
 
@@ -102,8 +93,31 @@
 }
 
 body {
-        background : #f2f2f2;
         font-family: 'Open Sans', sans-serif;
+
+        ul {
+                list-style-type: none;
+        }
+
+        .image-list {
+                display   : flex;
+                margin-top: 200px;
+
+                .image {
+                        display     : block;
+                        margin-left : auto;
+                        margin-right: auto;
+                        width       : 55%;
+                        height      : 60%
+                }
+        }
+
+}
+
+.empty-result {
+        text-align : center;
+        margin-left: 180px;
+        color      : #ca5ce6;
 }
 
 .search {
@@ -123,8 +137,8 @@ body {
         color        : #9DBFAF;
 }
 
-.searchTerm:focus {
-        color: #ca5ce6;
+.searchTerm {
+        color: black;
 }
 
 .searchButton {
@@ -139,16 +153,19 @@ body {
         font-size    : 20px;
 
         .loop-icon {
-                width : 100%;
-                // background-color:#ca5ce6 ;
+                width: 100%;
         }
 }
 
 /*Resize the wrap to see the search bar change!*/
 .wrap {
-        width    : 70%;
-        position : absolute;
-        top      : 50%;
-        left     : 50%;
-        transform: translate(-50%, -50%);
+        width          : 70%;
+        position       : absolute;
+        top            : 50%;
+        left           : 50%;
+        transform      : translate(-50%, -50%);
+        margin-top     : 150px;
+        // margin-left:600px;
+        // margin-right:0px;
+        // text-align: center;
 }

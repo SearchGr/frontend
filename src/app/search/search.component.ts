@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { properties } from '../../app.properties';
+import { AuthService } from '../auth.service';
 
 
 const httpOptions = {
@@ -21,25 +22,33 @@ export class SearchComponent implements OnInit {
   username = '';
   searchKey = '';
   mediaUrls = [];
+  mediaUserUrls = [];
+  firstSearch = false;
   logoutUrl = properties.serverUrl + '/logout';
+  images = [
+    { path: 'PATH_TO_IMAGE' }]
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public authService: AuthService) { }
 
-  public getUsername() {
-    return this.http.get<any>(properties.serverUrl + '/profile/username', httpOptions).toPromise();
-  }
 
   public sendSearchKey() {
     let url = properties.serverUrl + '/getPhotos' + "?key=" + this.searchKey;
     this.http.get<any>(url, httpOptions)
       .toPromise()
-      .then(result => this.mediaUrls = result['media_urls']); 
-    // if(this.mediaUrls != null){
-    //   document.getElementById('photos-not-found').style.display = "none";
-    // }
+      .then(result => {
+        this.mediaUrls = result['media_urls'];
+        this.firstSearch = true;
+      });
   }
 
+  public printEmptyResult() {
+    if (this.firstSearch == true && this.mediaUrls.length == 0)
+      return true;
+    return false;
+  }
+
+
   ngOnInit(): void {
-    this.getUsername().then(result => this.username = result['username']);
+    this.authService.getUsername().then(result => this.username = result['username']);
   }
 }
