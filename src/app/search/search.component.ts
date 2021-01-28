@@ -20,23 +20,23 @@ const httpOptions = {
 export class SearchComponent implements OnInit {
   username = '';
   searchKey = '';
+  mediaUrls = [];
+  logoutUrl = properties.serverUrl + '/logout';
+
   constructor(private http: HttpClient) { }
 
   public getUsername() {
     return this.http.get<any>(properties.serverUrl + '/profile/username', httpOptions).toPromise();
   }
 
-  public async sendSearchKey() {
+  public sendSearchKey() {
     let url = properties.serverUrl + '/getPhotos' + "?key=" + this.searchKey;
-    let result = await this.http.get<any>(url, httpOptions)
-      .toPromise();
-    // angular.forEach(result['media_url'],
-    //   console.log(result['media_url'])
-    // );
-    console.log(result);
-
-    // return JSON.parse(result);
-    // return this.http.get<any>(url, httpOptions).toPromise();
+    this.http.get<any>(url, httpOptions)
+      .toPromise()
+      .then(result => this.mediaUrls = result['media_urls']); 
+    // if(this.mediaUrls != null){
+    //   document.getElementById('photos-not-found').style.display = "none";
+    // }
   }
 
   ngOnInit(): void {

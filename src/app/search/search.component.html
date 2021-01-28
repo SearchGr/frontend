@@ -7,17 +7,26 @@
     <img alt="SeachGr Logo" src="../../assets/searchgr.png" class="logo">
     <div class="right-section">
       <span class="login-as">Logged in as {{username}}</span>
-      <a class="btn-logout" href="https://0999b390da37.ngrok.io/logout">| Logout</a>
+      <a class="btn-logout" href="{{logoutUrl}}">| Logout</a>
     </div>
-
   </div>
-  <div class="wrap">
-    <div class="search">
-      <input type="text" class="searchTerm" placeholder="What are you looking for?" [ngModel]="searchKey"
-        (ngModelChange)="searchKey=$event">
-      <button type="submit" class="searchButton" (click)="sendSearchKey()">
-        <input type="image" class="loop-icon" src="../../assets/icon-search.svg" alt="Search">
-      </button>
+  <div class = "body-container">
+    <div class="wrap">
+      <div class="search">
+        <input type="text" class="searchTerm" placeholder="What are you looking for?" [ngModel]="searchKey"
+          (ngModelChange)="searchKey=$event">
+        <button type="submit" class="searchButton" (click)="sendSearchKey()">
+          <img class="loop-icon" src="../../assets/icon-search.svg" alt="Search">
+        </button>
+      </div>
+    </div>
+    <div id="images" class="image-list">
+      <ul>
+        <li *ngFor="let media of mediaUrls">
+          <!-- <p id="photos-not-found">There aren't photos with the word you searched!</p> -->
+          <div id="photos" class="container-image"><img class="image" src={{media}}></div>
+        </li>
+      </ul>
     </div>
   </div>
 </body>
