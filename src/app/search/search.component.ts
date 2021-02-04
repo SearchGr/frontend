@@ -23,10 +23,9 @@ export class SearchComponent implements OnInit {
   searchKey = '';
   mediaUrls = [];
   mediaUserUrls = [];
-  firstSearch = false;
+  firstSearch = true;
   logoutUrl = properties.serverUrl + '/logout';
-  images = [
-    { path: 'PATH_TO_IMAGE' }];
+  images = [{ path: 'PATH_TO_IMAGE' }];
   isUsernameReady = false;
 
   constructor(private http: HttpClient, public authService: AuthService) { }
@@ -46,12 +45,14 @@ export class SearchComponent implements OnInit {
       .toPromise()
       .then(result => {
         this.mediaUrls = result['media_urls'];
-        this.firstSearch = true;
+        this.firstSearch = false;
       });
   }
 
   public printEmptyResult() {
-    if (this.firstSearch == true && this.mediaUrls.length == 0)
+    console.log("checking")
+    console.log("first search " + this.firstSearch + "   media urls " + this.mediaUrls);
+    if (this.firstSearch == false && this.mediaUrls == undefined)
       return true;
     return false;
   }

@@ -6,15 +6,23 @@
       <a class="btn-logout" href="{{logoutUrl}}">| Logout</a>
     </div>
   </div>
-  <div class="body-container">
-    <div class="wrap">
-      <div class="search">
-        <input type="text" class="searchTerm" placeholder="What are you looking for?" [ngModel]="searchKey"
-          (ngModelChange)="searchKey=$event">
-        <button type="submit" class="searchButton" (click)="sendSearchKey()">
-          <img class="loop-icon" src="../../assets/icon-search.svg" alt="Search">
-        </button>
-      </div>
+
+  <div class="wrap">
+    <div class="search">
+      <input type="text" class="searchTerm" placeholder="What are you looking for?" [ngModel]="searchKey"
+        (ngModelChange)="searchKey=$event" (keyup.enter)="sendSearchKey()">
+      <button type="submit" class="searchButton" (click)="sendSearchKey()">
+        <img class="loop-icon" src="../../assets/icon-search.svg" alt="Search">
+      </button>
+    </div>
+
+    <div id="images" class="image-list">
+      <div class="empty-result" *ngIf="printEmptyResult()">Sorry, we couldn't find any photos related to your search!</div>
+      <ul>
+        <li *ngFor="let media of mediaUrls">
+          <div class="container-image"><img class="image" src={{media}}></div>
+        </li>
+      </ul>
     </div>
     <!-- <carousel>
       <div class="carousel-cell">
@@ -39,13 +47,5 @@
         <img src="../../assets/seaside.JPG">
       </div>
     </carousel> -->
-    <div id="images" class="image-list">
-      <div class="empty-result" *ngIf="printEmptyResult()">There aren't photos with the word you searched!</div>
-      <ul>
-        <li *ngFor="let media of mediaUrls">
-          <div id="photos" class="container-image"><img class="image" src={{media}}></div>
-        </li>
-      </ul>
-    </div>
   </div>
 </div>

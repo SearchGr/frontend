@@ -73,29 +73,21 @@
     }
 }
 
+ul {
+    list-style-type: none;
+}
 
+.image-list {
+    display   : flex;
+    margin-top: 200px;
 
-
-body {
-    font-family: 'Open Sans', sans-serif;
-
-    ul {
-        list-style-type: none;
+    .image {
+        display     : block;
+        margin-left : auto;
+        margin-right: auto;
+        width       : 55%;
+        height      : 60%
     }
-
-    .image-list {
-        display   : flex;
-        margin-top: 200px;
-
-        .image {
-            display     : block;
-            margin-left : auto;
-            margin-right: auto;
-            width       : 55%;
-            height      : 60%
-        }
-    }
-
 }
 
 .empty-result {
@@ -114,7 +106,7 @@ body {
     width        : 100%;
     border       : 3px solid #ca5ce6;
     border-right : none;
-    padding      : 5px;
+    padding-left : 15px;
     height       : 54px;
     border-radius: 5px 0 0 5px;
     outline      : none;
@@ -143,9 +135,9 @@ body {
 
 /*Resize the wrap to see the search bar change!*/
 .wrap {
-    width          : 70%;
-    position       : absolute;
-    top            : 50%;
-    left           : 50%;
-    transform      : translate(-50%, -50%);
+    width    : 70%;
+    position : absolute;
+    top      : 50%;
+    left     : 50%;
+    transform: translate(-50%, -50%);
 }
