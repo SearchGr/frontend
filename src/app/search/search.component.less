@@ -1,11 +1,11 @@
 .active-pink-2 input[type=search] {
-        border-bottom: 1px solid #ca5ce6;
-        box-shadow   : 0 1px 0 0 #ca5ce6;
+    border-bottom: 1px solid #ca5ce6;
+    box-shadow   : 0 1px 0 0 #ca5ce6;
 }
 
 .active-pink input[type=search] {
-        border-bottom: 1px solid #ca5ce6;
-        box-shadow   : 0 1px 0 0 #ca5ce6;
+    border-bottom: 1px solid #ca5ce6;
+    box-shadow   : 0 1px 0 0 #ca5ce6;
 }
 
 // .active-purple-2 input[type=search]:focus:not([readonly]) {
@@ -30,142 +30,122 @@
 
 /* Add a black background color to the top navigation */
 .topnav {
-        background-color: #ad00d8;
-        border-radius   : 20px;
-        overflow        : hidden;
-        margin-bottom   : 100px;
+    background-color: #ad00d8;
+    border-radius   : 0 0 15px 15px;
+    overflow        : hidden;
 
-        .right-section {
-                float     : right;
-                text-align: center;
+    .right-section {
+        float     : right;
+        text-align: center;
 
-                a,
-                span {
-                        float          : left;
-                        color          : white;
-                        text-align     : center;
-                        padding        : 14px 4px;
-                        text-decoration: none;
-                        font-size      : 13px;
-                }
-
-                .btn-logout {
-                        margin-right: 10px;
-                }
-
-                .login-as {
-                        margin-left: 0px;
-                }
+        a,
+        span {
+            float          : left;
+            color          : white;
+            text-align     : center;
+            padding        : 20px 4px;
+            text-decoration: none;
+            font-size      : 13px;
         }
-}
 
+        .btn-logout {
+            margin-right: 15px;
+        }
+    }
 
-/* Change the color of links on hover */
-.topnav a:hover {
-        background-color: rgb(185, 111, 185);
-        color           : #ad00d8;
-        border-radius   : 20px;
-}
+    a {
+        &:hover {
+            background-color: rgb(185, 111, 185);
+            color           : #ad00d8;
+            border-radius   : 20px;
+        }
 
-/* Add a color to the active/current link */
-.topnav a.active {
-        background-color: #ca5ce6;
-        color           : white;
-        border-radius   : 20px;
-}
+        &:active {
+            background-color: #ca5ce6;
+            color           : white;
+            border-radius   : 20px;
+        }
+    }
 
-/* The overlay effect with black background */
-.overlay {
-        height          : 100%;
-        width           : 100%;
-        display         : none;
-        position        : fixed;
-        z-index         : 1;
-        top             : 0;
-        left            : 0;
-        background-color: rgb(255, 255, 255);
-        /* Black with a little bit see-through */
-}
-
-.logo {
-        width      : 50px;
+    .logo {
+        width      : 60px;
         margin-left: 15px;
+    }
 }
+
+
+
 
 body {
-        font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 
-        ul {
-                list-style-type: none;
+    ul {
+        list-style-type: none;
+    }
+
+    .image-list {
+        display   : flex;
+        margin-top: 200px;
+
+        .image {
+            display     : block;
+            margin-left : auto;
+            margin-right: auto;
+            width       : 55%;
+            height      : 60%
         }
-
-        .image-list {
-                display   : flex;
-                margin-top: 200px;
-
-                .image {
-                        display     : block;
-                        margin-left : auto;
-                        margin-right: auto;
-                        width       : 55%;
-                        height      : 60%
-                }
-        }
+    }
 
 }
 
 .empty-result {
-        text-align : center;
-        margin-left: 180px;
-        color      : #ca5ce6;
+    text-align : center;
+    margin-left: 180px;
+    color      : #ca5ce6;
 }
 
 .search {
-        width   : 100%;
-        position: relative;
-        display : flex;
+    width   : 100%;
+    position: relative;
+    display : flex;
 }
 
 .searchTerm {
-        width        : 100%;
-        border       : 3px solid #ca5ce6;
-        border-right : none;
-        padding      : 5px;
-        height       : 54px;
-        border-radius: 5px 0 0 5px;
-        outline      : none;
-        color        : #9DBFAF;
+    width        : 100%;
+    border       : 3px solid #ca5ce6;
+    border-right : none;
+    padding      : 5px;
+    height       : 54px;
+    border-radius: 5px 0 0 5px;
+    outline      : none;
+    color        : #9DBFAF;
 }
 
 .searchTerm {
-        color: black;
+    color: black;
 }
 
 .searchButton {
-        width        : 55px;
-        height       : 70px;
-        border       : 1px solid #ca5ce6;
-        background   : #ca5ce6;
-        text-align   : center;
-        color        : #fff;
-        border-radius: 0 5px 5px 0;
-        cursor       : pointer;
-        font-size    : 20px;
+    width        : 54px;
+    height       : 54px;
+    border       : 1px solid #ca5ce6;
+    background   : #ca5ce6;
+    text-align   : center;
+    color        : #fff;
+    border-radius: 0 5px 5px 0;
+    cursor       : pointer;
+    font-size    : 20px;
 
-        .loop-icon {
-                width: 100%;
-        }
+    .loop-icon {
+        width: 100%;
+    }
 }
 
 /*Resize the wrap to see the search bar change!*/
 .wrap {
-        width          : 70%;
-        position       : absolute;
-        top            : 50%;
-        left           : 50%;
-        transform      : translate(-50%, -50%);
-        margin-top     : 150px;
-        // margin-left:600px;
-        // margin-right:0px;
-        // text-align: center;
+    width          : 70%;
+    position       : absolute;
+    top            : 50%;
+    left           : 50%;
+    transform      : translate(-50%, -50%);
 }

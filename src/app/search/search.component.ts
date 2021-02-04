@@ -26,10 +26,19 @@ export class SearchComponent implements OnInit {
   firstSearch = false;
   logoutUrl = properties.serverUrl + '/logout';
   images = [
-    { path: 'PATH_TO_IMAGE' }]
+    { path: 'PATH_TO_IMAGE' }];
+  isUsernameReady = false;
 
   constructor(private http: HttpClient, public authService: AuthService) { }
 
+  ngOnInit(): void {
+    this.authService.getUsername()
+      .then(result => {
+        this.username = result['username'];
+        this.isUsernameReady = true;
+      })
+      .catch(() => this.isUsernameReady = true);
+  }
 
   public sendSearchKey() {
     let url = properties.serverUrl + '/getPhotos' + "?key=" + this.searchKey;
@@ -47,8 +56,4 @@ export class SearchComponent implements OnInit {
     return false;
   }
 
-
-  ngOnInit(): void {
-    this.authService.getUsername().then(result => this.username = result['username']);
-  }
 }

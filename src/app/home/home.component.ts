@@ -6,11 +6,17 @@ import { AuthService } from '../auth.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.less']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   username = undefined;
-  constructor(public authService: AuthService) { }
+  isDataReady = false;
 
-  ngOnInit(): void {
-    this.authService.getUsername().then(result => this.username = result['username'])
+  constructor(public authService: AuthService) {
+    this.authService.getUsername()
+      .then(result => {
+        this.username = result['username'];
+        this.isDataReady = true;
+      })
+      .catch(() => this.isDataReady = true);
   }
+
 }

@@ -1,4 +1,4 @@
-<header class="masthead">
+<header class="masthead h-100" *ngIf="isDataReady">
   <div class="container h-100">
     <div class="row h-100 align-items-center justify-content-center text-center">
       <div class="col-lg-10 align-self-end">
@@ -13,8 +13,8 @@
           content of the images.
         </p>
         <a class="btn btn-primary btn-xl " href="http://localhost:8000/login">Login with Instagram</a>
-        <div class="btn-continue-as" *ngIf="this.username">
-          <a href='/search'>Continue as {{this.username}}</a>
+        <div *ngIf="this.username">
+          <a class="btn-continue-as" href='/search'>Continue as {{this.username}}</a>
         </div>
       </div>
     </div>
