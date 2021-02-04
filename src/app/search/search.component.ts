@@ -25,8 +25,10 @@ export class SearchComponent implements OnInit {
   mediaUserUrls = [];
   firstSearch = true;
   logoutUrl = properties.serverUrl + '/logout';
+  searchUrl = properties.serverUrl + '/getPhotos';
   images = [{ path: 'PATH_TO_IMAGE' }];
   isUsernameReady = false;
+  loading = false;
 
   constructor(private http: HttpClient, public authService: AuthService) { }
 
@@ -40,18 +42,19 @@ export class SearchComponent implements OnInit {
   }
 
   public sendSearchKey() {
-    let url = properties.serverUrl + '/getPhotos' + "?key=" + this.searchKey;
-    this.http.get<any>(url, httpOptions)
-      .toPromise()
-      .then(result => {
-        this.mediaUrls = result['media_urls'];
-        this.firstSearch = false;
-      });
+    if (this.searchKey && this.searchKey.trim() != '') {
+      this.loading = true;
+      this.http.get<any>(this.searchUrl + "?key=" + this.searchKey, httpOptions)
+        .toPromise()
+        .then(result => {
+          this.mediaUrls = result['media_urls'];
+          this.firstSearch = false;
+          this.loading = false;
+        });
+    }
   }
 
-  public printEmptyResult() {
-    console.log("checking")
-    console.log("first search " + this.firstSearch + "   media urls " + this.mediaUrls);
+  public isResultEmpty() {
     if (this.firstSearch == false && this.mediaUrls == undefined)
       return true;
     return false;

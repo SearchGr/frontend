@@ -7,24 +7,27 @@
     </div>
   </div>
 
-  <div class="wrap">
-    <div class="search">
-      <input type="text" class="searchTerm" placeholder="What are you looking for?" [ngModel]="searchKey"
-        (ngModelChange)="searchKey=$event" (keyup.enter)="sendSearchKey()">
-      <button type="submit" class="searchButton" (click)="sendSearchKey()">
-        <img class="loop-icon" src="../../assets/icon-search.svg" alt="Search">
-      </button>
-    </div>
+  <div class="body-container">
+    <div class="wrap">
+      <div class="search">
+        <input type="text" class="search-term" placeholder="What are you looking for?" [ngModel]="searchKey"
+          (ngModelChange)="searchKey=$event" (keyup.enter)="sendSearchKey()">
+        <button type="submit" class="search-button" (click)="sendSearchKey()" [class.spinner]="loading"
+          [disabled]="loading">
+          <img class="loop-icon" src="../../assets/icon-search.svg" alt="Search">
+        </button>
+      </div>
 
-    <div id="images" class="image-list">
-      <div class="empty-result" *ngIf="printEmptyResult()">Sorry, we couldn't find any photos related to your search!</div>
-      <ul>
-        <li *ngFor="let media of mediaUrls">
-          <div class="container-image"><img class="image" src={{media}}></div>
-        </li>
-      </ul>
-    </div>
-    <!-- <carousel>
+      <div class="search-result">
+        <div class="empty-result" *ngIf="isResultEmpty()">Sorry, we couldn't find any photos related to your search!
+        </div>
+        <ul>
+          <li *ngFor="let media of mediaUrls">
+            <div class="image-container"><img class="image" src={{media}}></div>
+          </li>
+        </ul>
+      </div>
+      <!-- <carousel>
       <div class="carousel-cell">
         <img src="../../assets/dunare.JPG">
       </div>
@@ -47,5 +50,6 @@
         <img src="../../assets/seaside.JPG">
       </div>
     </carousel> -->
+    </div>
   </div>
 </div>
