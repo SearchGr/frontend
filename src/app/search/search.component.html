@@ -1,19 +1,24 @@
-<div *ngIf="isUsernameReady">
+<div *ngIf="flags.isUsernameReady">
   <div class="topnav">
     <img alt="SeachGr Logo" src="../../assets/searchgr.png" class="logo">
     <div class="right-section">
       <span class="login-as">Logged in as {{username}}</span>
-      <a class="btn-logout" href="{{logoutUrl}}">| Logout</a>
+      <a class="btn-logout" href="{{getLogoutUrl()}}">| Logout</a>
     </div>
   </div>
 
   <div class="body-container">
     <div class="wrap">
-      <div class="search">
+      <div class='progress-container'>
+        <circle-progress *ngIf="flags.processingUserMedia" [@inOutAnimation] [percent]="progressData.percentage"
+          [subtitle]="progressData.subtitle">
+        </circle-progress>
+      </div>
+      <div class="search" *ngIf="!flags.processingUserMedia" [@inOutAnimation]>
         <input type="text" class="search-term" placeholder="What are you looking for?" [ngModel]="searchKey"
           (ngModelChange)="searchKey=$event" (keyup.enter)="sendSearchKey()">
-        <button type="submit" class="search-button" (click)="sendSearchKey()" [class.spinner]="loading"
-          [disabled]="loading">
+        <button type="submit" class="search-button" (click)="sendSearchKey()" [class.spinner]="flags.searchLoading"
+          [disabled]="flags.searchLoading">
           <img class="loop-icon" src="../../assets/icon-search.svg" alt="Search">
         </button>
       </div>

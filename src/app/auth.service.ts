@@ -26,11 +26,26 @@ export class AuthService {
       .toPromise()
       .then(response => isAuthorized = response['authorized'])
       .catch(() => isAuthorized = false);
-    console.log("returning " + isAuthorized);
     return isAuthorized;
   }
 
   public getUsername() {
     return this.http.get<any>(properties.serverUrl + '/profile/username', httpOptions).toPromise();
+  }
+
+  public updateProfile() {
+    return this.http.get<any>(properties.serverUrl + '/profile/update', httpOptions).toPromise();
+  }
+
+  public getProfileProgress() {
+    return this.http.get<any>(properties.serverUrl + '/profile/progress', httpOptions).toPromise();
+  }
+
+  public getPhotos(searchKey: string) {
+    return this.http.get<any>(properties.serverUrl + '/photos?key=' + searchKey, httpOptions).toPromise();
+  }
+
+  public getLogoutUrl() {
+    return properties.serverUrl + '/logout';
   }
 }

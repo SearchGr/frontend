@@ -1,3 +1,3 @@
 export const properties = {
-  serverUrl: 'https://073df908b348.ngrok.io'
+  serverUrl: 'https://83243e5e2f96.ngrok.io'
 };

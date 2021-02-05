@@ -1,63 +1,104 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { properties } from '../../app.properties';
 import { AuthService } from '../auth.service';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
-
-const httpOptions = {
-  withCredentials: true,
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'charset': 'UTF-8',
-    'credentials': 'include'
-  })
-};
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.less']
+  styleUrls: ['./search.component.less'],
+  animations: [
+    trigger(
+      'inOutAnimation',
+      [
+        transition(
+          ':enter',
+          [
+            style({ height: 0, opacity: 0 }),
+            animate('1s ease-out',
+              style({ height: 300, opacity: 1 }))
+          ]
+        ),
+        transition(
+          ':leave',
+          [
+            style({ height: 300, opacity: 1 }),
+            animate('1s ease-in',
+              style({ height: 0, opacity: 0 }))
+          ]
+        )
+      ]
+    )
+  ]
 })
 export class SearchComponent implements OnInit {
   username = '';
   searchKey = '';
   mediaUrls = [];
   mediaUserUrls = [];
-  firstSearch = true;
-  logoutUrl = properties.serverUrl + '/logout';
-  searchUrl = properties.serverUrl + '/getPhotos';
-  images = [{ path: 'PATH_TO_IMAGE' }];
-  isUsernameReady = false;
-  loading = false;
 
-  constructor(private http: HttpClient, public authService: AuthService) { }
+  flags = {
+    isUsernameReady: false,
+    processingUserMedia: true,
+    firstSearch: true,
+    searchLoading: false
+  }
+
+  progressData = {
+    percentage: 0,
+    subtitle: 'Processing user profile'
+  }
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authService.updateProfile();
     this.authService.getUsername()
       .then(result => {
         this.username = result['username'];
-        this.isUsernameReady = true;
+        this.flags.isUsernameReady = true;
+        this.handleProgressircle();
       })
-      .catch(() => this.isUsernameReady = true);
+      .catch(() => this.flags.isUsernameReady = true);
   }
 
   public sendSearchKey() {
     if (this.searchKey && this.searchKey.trim() != '') {
-      this.loading = true;
-      this.http.get<any>(this.searchUrl + "?key=" + this.searchKey, httpOptions)
-        .toPromise()
+      this.flags.searchLoading = true;
+      this.authService.getPhotos(this.searchKey)
         .then(result => {
           this.mediaUrls = result['media_urls'];
-          this.firstSearch = false;
-          this.loading = false;
+          this.flags.firstSearch = false;
+          this.flags.searchLoading = false;
         });
     }
   }
 
   public isResultEmpty() {
-    if (this.firstSearch == false && this.mediaUrls == undefined)
+    if (this.flags.firstSearch == false && this.mediaUrls == undefined)
       return true;
     return false;
+  }
+
+  public getLogoutUrl() {
+    return this.authService.getLogoutUrl();
+  }
+
+  private async handleProgressircle() {
+    console.log('handling progress cirle');
+    this.authService.getProfileProgress()
+      .then(
+        result => {
+          this.progressData.percentage = result['percentage'];
+          setTimeout(() => {
+            if (this.progressData.percentage !== 100) {
+              this.handleProgressircle();
+            } else {
+              this.flags.processingUserMedia = false;
+            }
+          },
+            3000);
+        });
   }
 
 }
