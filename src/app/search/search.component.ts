@@ -77,7 +77,7 @@ export class SearchComponent implements OnInit {
   }
 
   public isResultEmpty() {
-    if (this.flags.firstSearch == false && (this.mediaList === undefined || this.mediaList.length === 0))
+    if (this.flags.firstSearch == false && this.flags.searchLoading === false && this.mediaList.length === 0)
       return true;
     return false;
   }
