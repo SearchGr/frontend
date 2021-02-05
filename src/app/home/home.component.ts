@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { Component } from '@angular/core';
+import { SearchGrApiService } from '../searchgr-api.service';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +10,8 @@ export class HomeComponent {
   username = undefined;
   isDataReady = false;
 
-  constructor(public authService: AuthService) {
-    this.authService.getUsername()
+  constructor(public searchGrApiService: SearchGrApiService) {
+    this.searchGrApiService.getUsername()
       .then(result => {
         this.username = result['username'];
         this.isDataReady = true;

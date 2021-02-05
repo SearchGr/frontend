@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
-import { AuthService } from './auth.service';
+import { SearchGrApiService } from './searchgr-api.service';
 
 
 @Injectable({
@@ -8,9 +8,9 @@ import { AuthService } from './auth.service';
 })
 export class AuthGuardService implements CanActivate {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private searchGrApiService: SearchGrApiService, private router: Router) { }
   canActivate(): boolean {
-    this.authService.isUserAuthorized()
+    this.searchGrApiService.isUserAuthorized()
       .then(isAuthorized => {
         if (!isAuthorized) {
           this.router.navigate(['home']);

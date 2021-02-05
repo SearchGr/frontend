@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import { SearchGrApiService } from '../searchgr-api.service';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 
 @Component({
@@ -49,11 +49,11 @@ export class SearchComponent implements OnInit {
     subtitle: 'Processing user profile'
   }
 
-  constructor(private authService: AuthService) { }
+  constructor(private searchGrApiService: SearchGrApiService) { }
 
   ngOnInit(): void {
-    this.authService.updateProfile();
-    this.authService.getUsername()
+    this.searchGrApiService.updateProfile();
+    this.searchGrApiService.getUsername()
       .then(result => {
         this.username = result['username'];
         this.flags.isUsernameReady = true;
@@ -65,7 +65,7 @@ export class SearchComponent implements OnInit {
   public sendSearchKey() {
     if (this.searchKey && this.searchKey.trim() != '') {
       this.flags.searchLoading = true;
-      this.authService.getPhotos(this.searchKey)
+      this.searchGrApiService.getPhotos(this.searchKey)
         .then(result => {
           this.mediaList = result;
           console.log(this.mediaList);
@@ -83,11 +83,11 @@ export class SearchComponent implements OnInit {
   }
 
   public getLogoutUrl() {
-    return this.authService.getLogoutUrl();
+    return this.searchGrApiService.getLogoutUrl();
   }
 
   private async handleProgressircle() {
-    this.authService.getProfileProgress()
+    this.searchGrApiService.getProfileProgress()
       .then(
         result => {
           this.progressData.percentage = result['percentage'];

@@ -15,7 +15,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class SearchGrApiService {
 
   constructor(private http: HttpClient, private cookieService: CookieService) { }
 
