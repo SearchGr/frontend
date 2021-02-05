@@ -34,7 +34,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class SearchComponent implements OnInit {
   username = '';
   searchKey = '';
-  mediaUrls = [];
+  mediaList = [];
   mediaUserUrls = [];
 
   flags = {
@@ -67,15 +67,17 @@ export class SearchComponent implements OnInit {
       this.flags.searchLoading = true;
       this.authService.getPhotos(this.searchKey)
         .then(result => {
-          this.mediaUrls = result['media_urls'];
+          this.mediaList = result;
+          console.log(this.mediaList);
           this.flags.firstSearch = false;
           this.flags.searchLoading = false;
-        });
+        })
+        .catch(() => this.flags.searchLoading = false);
     }
   }
 
   public isResultEmpty() {
-    if (this.flags.firstSearch == false && this.mediaUrls == undefined)
+    if (this.flags.firstSearch == false && (this.mediaList === undefined || this.mediaList.length === 0))
       return true;
     return false;
   }
@@ -85,7 +87,6 @@ export class SearchComponent implements OnInit {
   }
 
   private async handleProgressircle() {
-    console.log('handling progress cirle');
     this.authService.getProfileProgress()
       .then(
         result => {

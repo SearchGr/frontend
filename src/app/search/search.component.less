@@ -1,5 +1,6 @@
-@magenta: #ad00d8;
-@pink   : #ca5ce6;
+@magenta   : #ad00d8;
+@pink      : #ca5ce6;
+@dusty-pink: #f6eaea;
 
 .topnav {
     background-color: @magenta;
@@ -110,14 +111,30 @@ ul {
         margin-top: 30px;
 
         .image-container {
-            width  : 100%;
-            padding: 25px;
+            width     : 60%;
+            margin    : auto;
+            padding   : 25px;
+            text-align: center;
+            position  : relative;
 
             .image {
-                display     : block;
-                margin-left : auto;
-                margin-right: auto;
-                width       : 55%;
+                display      : block;
+                margin       : auto;
+                width        : 100%;
+                border       : 15px solid @dusty-pink;
+                border-bottom: 50px solid @dusty-pink;
+                box-shadow   : 3px 3px 3px #777;
+            }
+
+            .permalink {
+                position: absolute;
+                left    : 0;
+                width   : 100%;
+                bottom  : 35px;
+
+                &:hover {
+                    color: @magenta;
+                }
             }
         }
 

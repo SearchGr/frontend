@@ -27,8 +27,11 @@
         <div class="empty-result" *ngIf="isResultEmpty()">Sorry, we couldn't find any photos related to your search!
         </div>
         <ul>
-          <li *ngFor="let media of mediaUrls">
-            <div class="image-container"><img class="image" src={{media}}></div>
+          <li *ngFor="let media of mediaList">
+            <div class="image-container">
+              <img class="image" [src]="media['url']">
+              <a class="permalink" [href]="media['permalink']" target="_blank" rel="noopener noreferrer">Take me to this post!</a>
+            </div>
           </li>
         </ul>
       </div>
