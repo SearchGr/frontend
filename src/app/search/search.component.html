@@ -14,7 +14,7 @@
           [subtitle]="progressData.subtitle">
         </circle-progress>
       </div>
-      <div class="search" *ngIf="!flags.processingUserMedia" [@inOutAnimation]>
+      <div class="search col-xl-4 col-lg-6 col-md-8 col-sm-10" *ngIf="!flags.processingUserMedia" [@inOutAnimation]>
         <input type="text" class="search-term" placeholder="What are you looking for?" [ngModel]="searchKey"
           (ngModelChange)="searchKey=$event" (keyup.enter)="sendSearchKey()">
         <button type="submit" class="search-button" (click)="sendSearchKey()" [class.spinner]="flags.searchLoading"
@@ -23,41 +23,19 @@
         </button>
       </div>
 
-      <div class="search-result">
+      <div class="search-result col-xl-4 col-lg-6 col-md-8 col-sm-10">
         <div class="empty-result" *ngIf="isResultEmpty()">Sorry, we couldn't find any photos related to your search!
         </div>
         <ul>
           <li *ngFor="let media of mediaList">
             <div class="image-container">
               <img class="image" [src]="media['url']">
-              <a class="permalink" [href]="media['permalink']" target="_blank" rel="noopener noreferrer">Take me to this post!</a>
+              <a class="permalink" [href]="media['permalink']" target="_blank" rel="noopener noreferrer">Take me to this
+                post!</a>
             </div>
           </li>
         </ul>
       </div>
-      <!-- <carousel>
-      <div class="carousel-cell">
-        <img src="../../assets/dunare.JPG">
-      </div>
-      <div class="carousel-cell">
-        <img src="../../assets/ciucas.JPG">
-      </div>
-      <div class="carousel-cell">
-        <img src="../../assets/ciucas1.JPG">
-      </div>
-      <div class="carousel-cell">
-        <img src="../../assets/seaside.JPG">
-      </div>
-      <div class="carousel-cell">
-        <img src="../../assets/ciucas.JPG">
-      </div>
-      <div class="carousel-cell">
-        <img src="../../assets/dunare.JPG">
-      </div>
-      <div class="carousel-cell">
-        <img src="../../assets/seaside.JPG">
-      </div>
-    </carousel> -->
     </div>
   </div>
 </div>

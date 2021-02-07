@@ -63,16 +63,17 @@ export class SearchComponent implements OnInit {
   }
 
   public sendSearchKey() {
-    if (this.searchKey && this.searchKey.trim() != '') {
-      this.flags.searchLoading = true;
-      this.searchGrApiService.getPhotos(this.searchKey)
-        .then(result => {
-          this.mediaList = result;
-          console.log(this.mediaList);
-          this.flags.firstSearch = false;
-          this.flags.searchLoading = false;
-        })
-        .catch(() => this.flags.searchLoading = false);
+    if (!this.flags.searchLoading) {
+      if (this.searchKey && this.searchKey.trim() != '') {
+        this.flags.searchLoading = true;
+        this.searchGrApiService.getPhotos(this.searchKey)
+          .then(result => {
+            this.mediaList = result;
+            this.flags.firstSearch = false;
+            this.flags.searchLoading = false;
+          })
+          .catch(() => this.flags.searchLoading = false);
+      }
     }
   }
 
