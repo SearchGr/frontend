@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
 import { properties } from '../app.properties';
+import { Router } from '@angular/router';
 
 
 const httpOptions = {
@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class SearchGrApiService {
 
-  constructor(private http: HttpClient, private cookieService: CookieService) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   public async isUserAuthorized() {
     let url = properties.serverUrl + "/checkAuthorization";
@@ -45,7 +45,11 @@ export class SearchGrApiService {
     return this.http.get<any>(properties.serverUrl + '/photos?key=' + searchKey, httpOptions).toPromise();
   }
 
-  public getLogoutUrl() {
-    return properties.serverUrl + '/logout';
+  public logout() {
+    this.http.get<any>(properties.serverUrl + '/logout', httpOptions)
+      .toPromise()
+      .then(() => this.router.navigate(['home']));
+
   }
+
 }

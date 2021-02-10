@@ -2,8 +2,8 @@
   <div class="topnav">
     <img alt="SeachGr Logo" src="../../assets/searchgr.png" class="logo">
     <div class="right-section">
-      <span class="login-as">Logged in as {{username}}</span>
-      <a class="btn-logout" href="{{getLogoutUrl()}}">| Logout</a>
+      <span class="login-as">Logged in as {{username}} &nbsp;|</span>
+      <span class="btn-logout" (click)="logout()">Logout</span>
     </div>
   </div>
 

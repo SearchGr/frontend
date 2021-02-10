@@ -57,7 +57,7 @@ export class SearchComponent implements OnInit {
       .then(result => {
         this.username = result['username'];
         this.flags.isUsernameReady = true;
-        this.handleProgressircle();
+        this.handleProgressCircle();
       })
       .catch(() => this.flags.isUsernameReady = true);
   }
@@ -83,18 +83,18 @@ export class SearchComponent implements OnInit {
     return false;
   }
 
-  public getLogoutUrl() {
-    return this.searchGrApiService.getLogoutUrl();
+  public logout() {
+    this.searchGrApiService.logout();
   }
 
-  private async handleProgressircle() {
+  private async handleProgressCircle() {
     this.searchGrApiService.getProfileProgress()
       .then(
         result => {
           this.progressData.percentage = result['percentage'];
           setTimeout(() => {
             if (this.progressData.percentage !== 100) {
-              this.handleProgressircle();
+              this.handleProgressCircle();
             } else {
               this.flags.processingUserMedia = false;
             }
