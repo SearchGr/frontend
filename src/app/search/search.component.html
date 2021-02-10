@@ -1,6 +1,8 @@
 <div *ngIf="flags.isUsernameReady">
   <div class="topnav">
-    <img alt="SeachGr Logo" src="../../assets/searchgr.png" class="logo">
+    <a href="./home">
+      <img alt="SeachGr Logo" src="../../assets/searchgr.png" class="logo">
+    </a>
     <div class="right-section">
       <span class="login-as">Logged in as {{username}} &nbsp;|</span>
       <span class="btn-logout" (click)="logout()">Logout</span>
